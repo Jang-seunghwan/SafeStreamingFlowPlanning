@@ -1,0 +1,26 @@
+# Main environment (training and evaluation), versions as used for the paper runs.
+# The paper runs used this environment with the site-packages of envs/f1tenth.yml
+# placed FIRST on PYTHONPATH, so numpy, scipy, gymnasium, numba, PyYAML and pillow
+# came from the f1tenth environment (see README, Installation).
+# Note: f1tenth_gym v1.0.0 declares gymnasium<0.30; at run time gymnasium 1.1.1
+# from the f1tenth environment was used.
+name: ssf
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu126
+      - torch==2.7.1
+      - torchcfm==1.0.7
+      - torchdyn==1.0.6
+      - qpth==0.0.18
+      - einops==0.8.1
+      - tqdm==4.67.1
+      - shapely==2.0.7
+      - opencv-python==4.12.0.88
+      - pygame==2.6.1
+      - requests==2.32.4
+      - yamldataclassconfig==1.5.0
+      - f1tenth_gym @ git+https://github.com/f1tenth/f1tenth_gym.git@5a301bd0ae1ceaf7dec653e7549c8d099db58a6b  # tag v1.0.0

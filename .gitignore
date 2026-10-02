@@ -1,0 +1,25 @@
+# ── Data, checkpoints and outputs (regenerable / too big for git) ──
+logs/
+processed_data/
+checkpoints/
+results/
+
+# External raceline / map data (separate repository)
+f1tenth_racetracks/
+
+# ── Python / IDE / OS ──────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+
+.idea/
+.vscode/
+.DS_Store
+*.swp
+*.swo
+.ipynb_checkpoints/
+.env

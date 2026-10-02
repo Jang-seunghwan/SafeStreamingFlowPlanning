@@ -1,0 +1,20 @@
+# Second environment, versions as used for the paper runs. Its site-packages
+# directory is placed first on PYTHONPATH when running the code with the ssf
+# environment (see README, Installation); the checkpoints are pickled with numpy 2.x.
+# scripts/collect_trajectories.py additionally needs the f110_gym package (the
+# gym/f110_gym package of f1tenth_gym v0.2.x with its gym imports switched to
+# gymnasium), which is not pip-installable; see README, Data.
+name: f1tenth
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+      - numpy==2.0.2
+      - scipy==1.13.1
+      - gymnasium==1.1.1
+      - numba==0.60.0
+      - pyyaml==6.0.3
+      - pillow==11.3.0
+      - pyglet==1.5.20   # imported by f110_gym (data collection only)
