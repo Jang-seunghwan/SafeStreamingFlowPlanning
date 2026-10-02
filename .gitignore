@@ -1,0 +1,25 @@
+# IDE / OS
+.vscode/
+.DS_Store
+.hypothesis/
+
+# Python
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Training outputs
+logs/
+videos/
+imgs/
+
+# Temp / generated
+nohup.out
+*.pkl
+
+# Data / external
+gym/
+mujoco-py/

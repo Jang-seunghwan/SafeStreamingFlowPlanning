@@ -1,0 +1,27 @@
+name: ssf_loco
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - patchelf
+  - pip:
+      # versions of the environment the paper results were produced with
+      - torch==2.8.0
+      - numpy==1.26.4
+      - scipy==1.13.1
+      - gym==0.24.1
+      - Cython==0.29.37            # mujoco-py needs Cython < 3
+      - mujoco-py==2.1.2.14        # requires MuJoCo 2.1.0 in ~/.mujoco/mujoco210
+      - git+https://github.com/aravindr93/mjrl@3871d93763d3b49c4741e6daeaebbc605fe140dc#egg=mjrl
+      - git+https://github.com/Farama-Foundation/d4rl@f2a05c0d66722499bf8031b094d9af3aea7c372b#egg=d4rl
+      - qpth==0.0.18
+      - cvxpy==1.7.3
+      - torchcfm==1.0.7
+      - torchdyn==1.0.6
+      - einops==0.8.1
+      - typed-argument-parser==1.11.0
+      - matplotlib==3.3.4
+      - h5py==3.14.0
+      - tqdm==4.67.1
