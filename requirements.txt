@@ -1,0 +1,13 @@
+# Python 3.10 (must match ROS 2 Humble's rclpy). Versions used for the paper runs.
+# torch: CUDA 11.8 build, e.g. pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu118
+torch==2.7.1
+numpy==1.26.4
+scipy==1.15.2
+qpth==0.0.18
+PyYAML==6.0.3
+# RRT* baseline (OMPL Python bindings)
+ompl==2.0.1
+# scripts/clean_stutter.py
+pandas==2.3.3
+# bench/plot_traj_overlay.py
+matplotlib==3.10.8
