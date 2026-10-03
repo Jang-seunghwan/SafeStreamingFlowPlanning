@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Safe Streaming Flow Planning</title>
+<meta name="description" content="Safe Streaming Flow Planning by Aligning Sampling Dynamics with Execution Dynamics. CoRL 2026.">
+<style>
+  :root { --text: #1b1d21; --muted: #5a5f69; --link: #1a5fb4; --rule: #e3e5e9; --band: #f4f5f7; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: #fff; color: var(--text);
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+         font-size: 17px; line-height: 1.6; }
+  a { color: var(--link); }
+  .col { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+  header { text-align: center; padding: 48px 0 8px; }
+  h1 { font-size: 2rem; line-height: 1.25; margin: 0 0 18px; font-weight: 700; }
+  .authors { font-size: 1.1rem; margin: 0 0 4px; }
+  .affil { color: var(--muted); margin: 0 0 4px; }
+  .affil span { display: inline-block; margin: 0 8px; }
+  .notes { color: var(--muted); font-size: 0.9rem; margin: 0 0 10px; }
+  .venue { font-weight: 600; margin: 0 0 18px; }
+  .buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 0 0 8px; }
+  .buttons a { display: inline-block; padding: 7px 18px; border: 1px solid var(--text); border-radius: 999px;
+               color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+  .buttons a:hover { background: var(--text); color: #fff; }
+  .tldr { margin: 28px 0 8px; padding: 16px 18px; border-left: 3px solid var(--text); background: #fafbfc; }
+  .tldr b { margin-right: 6px; }
+  section { margin: 40px 0; }
+  h2 { font-size: 1.4rem; line-height: 1.3; margin: 0 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
+  p { margin: 0 0 12px; }
+  ul { margin: 0 0 12px; padding-left: 1.3em; }
+  li { margin: 0 0 6px; }
+  figure { margin: 22px 0 6px; position: relative; left: 50%; transform: translateX(-50%);
+           width: min(960px, calc(100vw - 32px)); }
+  figure img { display: block; width: 100%; height: auto; margin: 0 auto; }
+  .video { margin: 30px 0 0; }
+  .video video { display: block; width: 100%; height: auto; border-radius: 6px; background: #000; }
+  .fig-row { display: flex; gap: 16px; align-items: flex-start; margin: 22px 0 6px; position: relative; left: 50%;
+             transform: translateX(-50%); width: min(760px, calc(100vw - 32px)); }
+  .fig-row figure { margin: 0; position: static; left: auto; transform: none; width: auto; min-width: 0; flex: var(--ar) 1 0; }
+  .fig-row figcaption { font-size: 0.86rem; }
+  figcaption { max-width: 720px; margin: 10px auto 0; color: var(--muted); font-size: 0.92rem; text-align: center; }
+  .band { background: var(--band); padding: 36px 0 30px; margin: 56px 0 0; font-size: 0.94rem; }
+  .band section { margin: 0; }
+  .band h2 { border-bottom-color: #d9dce1; }
+  .cite { padding: 40px 0 56px; }
+  .cite section { margin: 0; }
+  .bib-head { display: flex; align-items: center; justify-content: space-between; gap: 12px;
+              margin: 0 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
+  .bib-head h2 { margin: 0; padding: 0; border: 0; }
+  button.copy { font: inherit; font-size: 0.85rem; padding: 4px 14px; border: 1px solid var(--text); border-radius: 999px;
+                background: #fff; color: var(--text); cursor: pointer; }
+  pre { margin: 6px 0 0; padding: 14px 16px; background: #f6f7f9; border: 1px solid var(--rule); border-radius: 6px;
+        font-size: 0.82rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+  @media (max-width: 600px) {
+    .fig-row { flex-direction: column; gap: 22px; }
+    .fig-row figure { flex: none; width: 100%; }
+    body { font-size: 16px; }
+    header { padding-top: 32px; }
+    h1 { font-size: 1.5rem; }
+    .authors { font-size: 1rem; }
+    h2 { font-size: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="col">
+  <h1>Safe Streaming Flow Planning by Aligning Sampling Dynamics with Execution Dynamics</h1>
+  <p class="authors">Seunghwan Jang<sup>1*†</sup>, Jeongyong Yang<sup>2†</sup>, Siddharth Ancha<sup>3</sup>, SooJean Han<sup>4*</sup></p>
+  <p class="affil"><span><sup>1</sup>Nanyang Technological University</span><span><sup>2</sup>University of Washington</span><span><sup>3</sup>University of California, Berkeley</span><span><sup>4</sup>KAIST</span></p>
+  <p class="notes"><sup>*</sup>Corresponding authors &nbsp; <sup>†</sup>Work done at KAIST</p>
+  <p class="venue">CoRL 2026</p>
+  <nav class="buttons">
+    <a href="https://arxiv.org/abs/XXXX.XXXXX">Paper</a>
+    <a href="https://github.com/Jang-seunghwan/SafeStreamingFlowPlanning">Code</a>
+    <a href="https://openreview.net/forum?id=gvM7KWEhVI">OpenReview</a>
+  </nav>
+</header>
+
+<main class="col">
+  <div class="video">
+    <video controls playsinline preload="metadata" width="1920" height="1080" poster="static/videos/ssf_overview_poster.jpg">
+      <source src="static/videos/ssf_overview.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <p class="tldr"><b>TL;DR</b>With control barrier functions (CBFs), safe generative planners enforce safety constraints at inference time, including constraints unseen during training. But they enforce them on the plan, and the robot's execution can still violate them. SafeStreamingFlow samples in execution time, so the safety filter acts on the step the robot executes.</p>
+
+  <section>
+    <h2>Safe plans, unsafe execution</h2>
+    <p>Safe diffusion and flow planners enforce CBF constraints on the generated plan. The executed trajectory can still violate them.</p>
+  </section>
+
+  <section>
+    <h2>Why: sampling ≠ execution</h2>
+    <p>These planners enforce safety on intermediate samples that the robot never executes.</p>
+    <figure>
+      <img src="static/images/teaser.png" width="1920" height="591" alt="Trajectory-level safe planner versus SafeStreamingFlow" loading="lazy">
+      <figcaption>(a) Trajectory-level safe planner: sampling and execution differ. (b) SafeStreamingFlow: each sampling step is an executed step.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Our method: sample in execution time</h2>
+    <ul>
+      <li>Streaming flow: integrate a learned state vector field in physical time.</li>
+      <li>Hierarchical state prediction: predict position, then velocity, so the planner follows the goal instead of extrapolating velocity.</li>
+      <li>HOCBF filter on the executed input: O(H) optimization solves instead of O(HK).</li>
+    </ul>
+    <figure>
+      <img src="static/images/ssf_step.png" width="1867" height="408" alt="Block diagram of one SafeStreamingFlow step" loading="lazy">
+      <figcaption>One step of SafeStreamingFlow.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Result: safe in execution</h2>
+    <ul>
+      <li>Enforces safety in execution whenever a solution exists, with goal-reaching close to the unfiltered planner.</li>
+      <li>Lower latency than trajectory-level safe planners.</li>
+    </ul>
+    <p>Tested on Maze2D, F1TENTH, MuJoCo Hopper, and a Gazebo warehouse.</p>
+    <div class="fig-row">
+      <figure style="--ar: 1.2766">
+        <img src="static/images/warehouse.png" width="1920" height="1504" alt="Executed trajectories of SafeDiffuser and SafeStreamingFlow in the Gazebo warehouse" loading="lazy">
+        <figcaption>SafeDiffuser (orange) enters the safety region during execution; SafeStreamingFlow (green) stays clear.</figcaption>
+      </figure>
+      <figure style="--ar: 3.1683">
+        <img src="static/images/hopper.png" width="1920" height="606" alt="Hopper rollout under SafeStreamingFlow below a ceiling" loading="lazy">
+        <figcaption>Hopper under SafeStreamingFlow: the torso stays below the ceiling (red).</figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<div class="band">
+  <div class="col">
+    <section>
+      <h2>Limitations</h2>
+      <ul>
+        <li>Requires a system model: safety holds under the model.</li>
+        <li>Simulation only; real-robot experiments remain future work.</li>
+        <li>No recursive feasibility guarantee: the filter can find no solution.</li>
+      </ul>
+      <p>For details, see the paper.</p>
+    </section>
+  </div>
+</div>
+
+<div class="cite">
+  <div class="col">
+    <section>
+      <div class="bib-head"><h2>Citation</h2><button class="copy" type="button" id="copy">Copy</button></div>
+<pre id="bibtex">@inproceedings{jang2026safe,
+  title={Safe Streaming Flow Planning by Aligning Sampling Dynamics with Execution Dynamics},
+  author={Jang, Seunghwan and Yang, Jeongyong and Ancha, Siddharth and Han, SooJean},
+  booktitle={10th Annual Conference on Robot Learning},
+  year={2026},
+  url={https://openreview.net/forum?id=gvM7KWEhVI}
+}</pre>
+    </section>
+  </div>
+</div>
+
+<script>
+  document.getElementById('copy').addEventListener('click', function () {
+    var b = this;
+    navigator.clipboard.writeText(document.getElementById('bibtex').textContent).then(function () {
+      b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500);
+    });
+  });
+</script>
+</body>
+</html>

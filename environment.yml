@@ -1,0 +1,25 @@
+name: ssf
+# Versions of the environment the Maze2D results were produced with (Python 3.9, CUDA 12.6 build of PyTorch).
+# mujoco-py additionally needs the MuJoCo 2.1.0 binaries in ~/.mujoco/mujoco210 (see the mujoco-py README).
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - patchelf
+  - pip:
+      - numpy==1.26.4
+      - scipy==1.13.1
+      - torch==2.7.1
+      - gym==0.23.1
+      - mujoco-py==2.1.2.14
+      - cython==0.29.37
+      - git+https://github.com/Farama-Foundation/d4rl@f2a05c0d66722499bf8031b094d9af3aea7c372b#egg=d4rl
+      - torchcfm==1.0.7
+      - torchdyn==1.0.6
+      - einops==0.8.1
+      - typed-argument-parser==1.10.1
+      - matplotlib==3.3.4
+      - imageio==2.37.0
+      - tqdm==4.67.1

@@ -1,0 +1,10 @@
+.vscode/
+__pycache__/
+**/__pycache__/
+*.egg-info/
+.DS_Store
+
+# Checkpoints, evaluation outputs and launcher logs
+logs/
+runs/
+results/
